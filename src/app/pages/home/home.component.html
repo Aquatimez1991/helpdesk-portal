@@ -1,0 +1,31 @@
+<div class="home-container">
+  <p-card class="home-card" header="Bienvenido al Portal de Mesa de Ayuda">
+    <p>
+      Este sistema te permitirá gestionar y dar seguimiento a solicitudes
+      técnicas según tu rol en la organización.
+    </p>
+    <p>
+      Por favor, haz clic en el botón para iniciar sesión y acceder a tu panel
+      de trabajo.
+    </p>
+    <div class="home-actions">
+      <button
+        pButton
+        label="Iniciar sesión"
+        icon="pi pi-sign-in"
+        class="home-button"
+        (click)="showLoginDialog = true"
+      ></button>
+    </div>
+  </p-card>
+
+  <!-- Diálogo que muestra el componente LoginComponent -->
+  <p-dialog
+    [(visible)]="showLoginDialog"
+    [modal]="true"
+    [closable]="true"
+    [style]="{ width: '400px', height: 'auto' }"
+  >
+    <app-login></app-login>
+  </p-dialog>
+</div>

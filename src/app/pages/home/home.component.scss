@@ -1,0 +1,30 @@
+.home-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #FAEDF0;
+    padding: 1rem;
+  }
+  
+  .home-card {
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+    background-color: #ffffff;
+    color: #161853;
+  }
+  
+  .home-actions {
+    margin-top: 2rem;
+  }
+  
+  .home-button {
+    background-color: #292C6D;
+    border: none;
+  }
+  
+  .home-button:hover {
+    background-color: #161853;
+  }
+  

@@ -1,59 +1,60 @@
-# HelpdeskPortal
+# Cyberdesk — ticketera de ciberseguridad
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.7.
+Reconstrucción del antiguo Helpdesk Portal como espacio de trabajo para un equipo de ciberseguridad. Esta fase implementa únicamente el frontend Angular: registra, prioriza, asigna y sigue incidentes y solicitudes con historial por ticket.
 
-## Development server
+## Ejecutar
 
-To start a local development server, run:
+Requiere una versión de Node compatible con Angular 22: `^22.22.3`, `^24.15.0` o `>=26.0.0`. Entorno verificado: Node 24.19.0 y npm 11.17.0.
 
-```bash
-ng serve
+```powershell
+npm.cmd ci
+npm.cmd start
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Abrir http://localhost:4200. No se requiere iniciar sesión: Ana Torres es una identidad ficticia de demostración.
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+```powershell
+npm.cmd run build
+npm.cmd run test:ci
+npm.cmd run audit
+npm.cmd run audit:prod
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Las pruebas usan Chrome Headless. Si no se detecta Chrome en Windows:
 
-```bash
-ng generate --help
+```powershell
+$env:CHROME_BIN = 'C:\Program Files\Google\Chrome\Application\chrome.exe'
+npm.cmd run test:ci
 ```
 
-## Building
+El build estático queda en `dist/helpdesk-portal/browser`. El servidor que lo aloje debe redirigir las rutas de la aplicación a `index.html`.
 
-To build the project run:
+## Qué incluye
 
-```bash
-ng build
-```
+- Resumen operativo con totales y gráficos calculados desde los tickets locales.
+- Bandeja unificada con búsqueda, filtros, ordenación, paginación y tablero por estado.
+- Registro de incidentes y solicitudes, categorías, prioridades, solicitante, responsable, activo e indicadores.
+- Detalle con contexto, notas, cambios de estado, reasignación, resolución y reapertura.
+- Trazabilidad local de los cambios, con actor de demostración y fecha.
+- Mis asignaciones, actividad del equipo y distribución de trabajo.
+- Exportación CSV de resultados o del espacio completo, incluido el historial.
+- Persistencia en el navegador, recuperación ante errores de almacenamiento y restablecimiento con confirmación.
+- Diseño adaptable, navegación por teclado, gestión de foco y diálogos con Angular CDK.
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## Alcance de los datos
 
-## Running unit tests
+Los 18 tickets iniciales y los cuatro analistas son ficticios. La interfaz identifica el modo de demostración. Se guardan hasta 500 tickets y 1000 eventos por ticket en `localStorage`, bajo `cyberdesk.demo.v1`.
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+Los objetivos de atención son ilustrativos; no constituyen un SLA aprobado. Las fechas de pantalla y el nombre de la exportación usan la zona de Lima. El CSV conserva las marcas de tiempo de los registros en UTC.
 
-```bash
-ng test
-```
+Los datos no se comparten entre navegadores. El historial local puede alterarse desde las herramientas del navegador y no constituye una auditoría verificable. No introducir información institucional sensible.
 
-## Running end-to-end tests
+## Arquitectura y continuidad
 
-For end-to-end (e2e) testing, run:
+Consulta [docs/FRONTEND.md](docs/FRONTEND.md) para las decisiones técnicas, el modelo, las reglas de seguimiento, las evidencias y la siguiente fase.
 
-```bash
-ng e2e
-```
+Angular está actualizado a 22.2.3, con CLI/build/CDK 22.2.4 y TypeScript 6.0.3. El informe de migración y seguridad está en [docs/ACTUALIZACION-DEPENDENCIAS.md](docs/ACTUALIZACION-DEPENDENCIAS.md).
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Se aplicaron los perfiles [AI Dev Workspace](https://github.com/Aquatimez1991/herramientas-de-IA/blob/2c2f4a31917e77fa43dbc2587ed7eed12926935c/agentes/ai-dev-workspace/AGENTE.md) y [Angular Cybersecurity Frontend Engineer](https://github.com/Aquatimez1991/herramientas-de-IA/blob/2c2f4a31917e77fa43dbc2587ed7eed12926935c/agentes/angular-cybersecurity-frontend-engineer/AGENTE.md), junto con sus referencias pertinentes.
 
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+El backend, la identidad real, la autorización, los archivos adjuntos y las notificaciones externas corresponden a una fase posterior.

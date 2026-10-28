@@ -1,49 +1,50 @@
 {
   "name": "helpdesk-portal",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:helpdesk-portal": "node dist/helpdesk-portal/server/server.mjs"
+    "test:ci": "ng test --watch=false --browsers=ChromeHeadless",
+    "audit": "npm audit --audit-level=low",
+    "audit:prod": "npm audit --omit=dev --audit-level=low"
   },
   "private": true,
+  "engines": {
+    "node": "^22.22.3 || ^24.15.0 || >=26.0.0"
+  },
+  "packageManager": "npm@11.17.0",
+  "overrides": {
+    "vite@>=8.3.0 <=8.3.2": "8.3.5"
+  },
   "dependencies": {
-    "@angular/animations": "^19.2.6",
-    "@angular/cdk": "^19.2.9",
-    "@angular/common": "^19.2.0",
-    "@angular/compiler": "^19.2.0",
-    "@angular/core": "^19.2.0",
-    "@angular/forms": "^19.2.0",
-    "@angular/platform-browser": "^19.2.0",
-    "@angular/platform-browser-dynamic": "^19.2.0",
-    "@angular/platform-server": "^19.2.0",
-    "@angular/router": "^19.2.0",
-    "@angular/ssr": "^19.2.7",
-    "express": "^4.18.2",
-    "primeflex": "^4.0.0",
-    "primeicons": "^7.0.0",
-    "primeng": "^17.3.2",
-    "rxjs": "~7.8.0",
-    "tslib": "^2.3.0",
-    "zone.js": "~0.15.0"
+    "@angular/cdk": "^22.2.4",
+    "@angular/common": "^22.2.3",
+    "@angular/compiler": "^22.2.3",
+    "@angular/core": "^22.2.3",
+    "@angular/forms": "^22.2.3",
+    "@angular/platform-browser": "^22.2.3",
+    "@angular/router": "^22.2.3",
+    "primeicons": "^8.0.2",
+    "rxjs": "~7.8.2",
+    "tslib": "^2.8.1",
+    "zone.js": "~0.16.3"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^19.2.0",
-    "@angular/cli": "^19.2.7",
-    "@angular/compiler-cli": "^19.2.0",
-    "@types/express": "^4.17.17",
-    "@types/jasmine": "~5.1.0",
-    "@types/node": "^18.18.0",
-    "jasmine-core": "~5.6.0",
-    "karma": "~6.4.0",
+    "@angular/build": "^22.2.4",
+    "@angular/cli": "^22.2.4",
+    "@angular/compiler-cli": "^22.2.3",
+    "@types/jasmine": "^6.0.0",
+    "@types/node": "^24.19.2",
+    "istanbul-lib-instrument": "^6.0.3",
+    "jasmine-core": "~6.3.0",
+    "karma": "~6.4.4",
     "karma-chrome-launcher": "~3.2.0",
-    "karma-coverage": "~2.2.0",
+    "karma-coverage": "~2.2.1",
     "karma-jasmine": "~5.1.0",
-    "karma-jasmine-html-reporter": "~2.1.0",
-    "typescript": "~5.7.2",
-    "vite-plugin-css-injected-by-js": "^3.5.2"
+    "karma-jasmine-html-reporter": "~2.3.0",
+    "typescript": "~6.0.3"
   }
 }

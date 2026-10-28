@@ -1,13 +1,7 @@
-
 import { bootstrapApplication } from '@angular/platform-browser';
-import { provideRouter } from '@angular/router';
-import { provideAnimations } from '@angular/platform-browser/animations';
+import { registerLocaleData } from '@angular/common';
+import localeEsPe from '@angular/common/locales/es-PE';
 import { AppComponent } from './app/app.component';
-import { routes } from './app/app.routes';
-
-bootstrapApplication(AppComponent, {
-  providers: [
-    provideRouter(routes),
-    provideAnimations()
-  ]
-});
+import { appConfig } from './app/app.config';
+registerLocaleData(localeEsPe);
+bootstrapApplication(AppComponent, appConfig).catch(error => console.error('No se pudo iniciar Cyberdesk.', error));

@@ -1,34 +1,13 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './pages/home/home.component';
-import { LoginComponent } from './pages/login/login.component';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { authGuard } from './guards/auth.guard';
-
 export const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'login', component: LoginComponent },
-  {
-    path: 'dashboard',
-    component: DashboardComponent,
-    canActivate: [authGuard],
-    children: [
-      {                               
-        path: 'agent',
-        loadComponent: () => import('../app/pages/dashboard/agent/agent.component').then(m => m.AgentComponent),
-      },
-      {
-        path: 'analyst',
-        loadComponent: () => import('../app/pages/dashboard/analyst/analyst.component').then(m => m.AnalystComponent),
-      },
-      {
-        path: 'employee',
-        loadComponent: () => import('../app/pages/dashboard/employee/employee.component').then(m => m.EmployeeComponent),
-      },
-      {
-        path: 'maintenance',
-        loadComponent: () => import('../app/pages/dashboard/maintenance/maintenance.component').then(m => m.MaintenanceComponent),
-      },
-    ]
-  },
-  { path: '**', redirectTo: '' }
+  { path: '', pathMatch: 'full', redirectTo: 'overview' },
+  { path: 'overview', title: 'Visión general | Cyberdesk', loadComponent: () => import('./overview/overview.component').then(m => m.OverviewComponent) },
+  { path: 'tickets', title: 'Bandeja de tickets | Cyberdesk', loadComponent: () => import('./tickets/tickets.component').then(m => m.TicketsComponent) },
+  { path: 'tickets/:id', title: 'Seguimiento del ticket | Cyberdesk', loadComponent: () => import('./tickets/tickets.component').then(m => m.TicketsComponent) },
+  { path: 'mine', title: 'Mis asignaciones | Cyberdesk', data: { mine: true }, loadComponent: () => import('./tickets/tickets.component').then(m => m.TicketsComponent) },
+  { path: 'activity', title: 'Actividad | Cyberdesk', loadComponent: () => import('./workspace/activity.component').then(m => m.ActivityComponent) },
+  { path: 'team', title: 'Equipo | Cyberdesk', loadComponent: () => import('./workspace/team.component').then(m => m.TeamComponent) },
+  { path: 'settings', title: 'Configuración | Cyberdesk', loadComponent: () => import('./workspace/settings.component').then(m => m.SettingsComponent) },
+  { path: 'dashboard', redirectTo: 'overview' },
+  { path: '**', redirectTo: 'overview' },
 ];
